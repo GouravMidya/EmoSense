@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+//Group Texts
+message ChatMessage {
+    string username = 1;
+    string message = 2;
+}
+
+//Personal Texts
+message privateChatMessage {
+    string username = 1;
+    string message = 2;
+    string username = 3;
+}
+
+service ChatService {
+    rpc SendMessage(ChatMessage) returns (google.protobuf.Empty);
+    rpc ReceiveMessage(google.protobuf.Empty) returns (stream ChatMessage);
+}
